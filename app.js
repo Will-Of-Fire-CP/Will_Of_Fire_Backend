@@ -1,18 +1,19 @@
-const express = require('express');
-const app = express();
-const port = 3100; 
-const cors = require('cors');
-// const pool = require('./db.js');
+const Koa = require('koa');
+const app = new Koa();
+
+// const port = 5000; 
+// const cors = require('cors');
+// // const pool = require('./db.js');
 
 
-app.use(express.json());
-app.use(cors());
+// app.use(express.json());
+// app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+// app.get('/', (req, res) => {
+//     res.send('Hello World!');
+// });
+app.use(async ctx => {
+    ctx.body = 'Hello World aaa';
 });
 
-
-app.listen(port, () => { 
-    console.log(`${port}`)
-});
+app.listen(5000);
