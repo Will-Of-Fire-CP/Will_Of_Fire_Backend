@@ -12,7 +12,7 @@ app.get('/here_is_me', (req, res) => {
 
 app.get("/posts", async (req, res) => {
     const posts = await pool.query("SELECT * FROM uers_data;");
-    res.send({posts} );
+    res.send(posts.rows);
 });
 
 
