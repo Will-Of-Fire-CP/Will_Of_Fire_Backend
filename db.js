@@ -4,6 +4,9 @@ const connectionString = "postgresql://postgres:j0GBQr7yHVg8ZqpCdKyJ@containers-
 
 const pool = new Pool({
     connectionString,
+    // database: 'aldair',
+    // user: "aldair",
+    // password: "a",
 });
 
 module.exports = pool;
