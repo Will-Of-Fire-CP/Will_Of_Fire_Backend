@@ -21,5 +21,5 @@ app.get('/one', (req, res) => {
 });
 
 
-app.use('/firend_requests', friendRequestsRouter)
+app.use('/friend_requests', friendRequestsRouter)
 app.listen(3000);
