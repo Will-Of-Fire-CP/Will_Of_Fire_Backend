@@ -2,12 +2,12 @@
 const friendsRequestMode = require("../models/friendsRequestMode")
 
 const gteFriendRequests = async (req, res) => {
-    try {
+    // try {
         const register = await friendsRequestMode.friendRequestDB()
         res.send({register});
-    } catch {
-        res.status(400).send()
-    }
+    // } catch {
+    //     res.status(400).send()
+    // }
 }
 module.exports = {
     gteFriendRequests
