@@ -12,14 +12,6 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.get('/here_is_me', (req, res) => {
-    res.send('Hello World! TWO');
-});
-
-app.get('/one', (req, res) => {
-    res.send('test Hello World! TWO');
-});
-
-
 app.use('/friend_requests', friendRequestsRouter)
+
 app.listen(3000);

@@ -4,6 +4,7 @@
  */
 exports.up = function(knex) {
     return knex.schema.createTable('friend_request', (table) => {
+        table.increments('friend_request_id').primary();
         table.integer('user_id').notNullable();
         table.integer('request_to_id').notNullable();
         table.timestamp('created_at').defaultTo(knex.fn.now());
