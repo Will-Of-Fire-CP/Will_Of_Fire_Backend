@@ -1,12 +1,10 @@
 const pool = require("../db.js");
 
-const friendRequestDB = async () => {
-    const data = await pool.query("SELECT * FROM friend_request").then(result => { return result.rows });
+const createAcountDB = async (user_name, useremail, password) => {
+    const data = await pool.query("INSERT INTO users(user_name, user_email,user_password) VALUES($1,$2, $3) RETURNING *", [user_name, useremail, password]).then(result => { return result.rows });
     return data
 }
 
-
-
 module.exports = {
-    friendRequestDB
+    createAcountDB
 }
