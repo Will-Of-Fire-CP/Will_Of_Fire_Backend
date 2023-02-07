@@ -6,6 +6,8 @@ const friendRequestController = require('../controllers/friendRequestController.
 
 router.get('/requests', friendRequestController.gteFriendRequests);
 
+router.get('/requests/:id', friendRequestController.getFriendRequestsByID);
+
 router.post('/send_friend_request', friendRequestController.sendFriendRequest);
 
 router.post('/accept_friend_request', friendRequestController.acceptFriendRequest);

@@ -9,6 +9,7 @@ exports.seed = async function(knex) {
     {
       user_name: 'test 1',
       user_email: 'test@test.org',
+      user_password: "testtesttest",
       user_score: 0,
       user_location: 'x:00,z:00,y:00'
     },

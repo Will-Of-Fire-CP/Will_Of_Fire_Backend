@@ -5,11 +5,15 @@ const pool = require("../db.js");
 //     return register
 // }
 
-const friendRequestDB = async (userName) => {
+const friendRequestDB = async () => {
     const data = await pool.query("SELECT * FROM friend_request").then(result => { return result.rows });
     return data
 }
 
+const getFriendRequestsByIDDB  = async (user_id) =>{
+    const data = await pool.query("SELECT * FROM friend_request WHERE request_to_id = $1", [user_id]).then(result => { return result.rows });
+    return data
+}
 const sendFriendRequest = async (user_id, request_to) => {
     const data = await pool.query("INSERT INTO friend_request(user_id, request_to_id) VALUES($1, $2) RETURNING *", [user_id, request_to]).then(result => { return result.rows });
     return data
@@ -27,6 +31,7 @@ const removeFruendRequestDB = async (friend_request_id) => {
 
 module.exports = {
     friendRequestDB,
+    getFriendRequestsByIDDB,
     sendFriendRequest,
     acceptFriendRequestDB,
     removeFruendRequestDB
