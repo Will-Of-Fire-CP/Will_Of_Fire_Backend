@@ -11,7 +11,8 @@ exports.up = function(knex) {
         table.string('user_password').notNullable();
         table.integer('user_score').notNullable().defaultTo(0);
         table.string('user_location').notNullable().defaultTo("x:0,z:0,y:0");
-        table.timestamp('created_at').defaultTo(knex.fn.now());
+        // table.timestamps('created_at').defaultTo(knex.fn.now());
+        table.timestamps(true, true);
     })
 };
 

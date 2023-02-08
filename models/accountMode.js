@@ -9,6 +9,7 @@ const getUserDataDB = async (user_name) => {
     const data = await pool.query("SELECT * FROM users WHERE user_name = $1", [user_name]).then(result => { return result.rows });
     return data
 }
+
 module.exports = {
     createAcountDB,
     getUserDataDB
