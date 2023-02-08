@@ -5,6 +5,7 @@ const cors = require('cors');
 const app = new express();
 const friendRequestsRouter = require("./routes/friendRequestsRouter.js")
 const accounts = require('./routes/accountsRouter')
+
 app.use(express.json());
 app.use(cors());
 
