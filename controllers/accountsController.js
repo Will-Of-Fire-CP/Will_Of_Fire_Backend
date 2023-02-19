@@ -22,6 +22,7 @@ const login = async (req, res) => {
         if (!passCheck) {
             res.status(400).json({ message: "Password is incorrect" });
         } else {
+            user.message = "login confirmed"
             res.status(200).json(user)
         }
     }
