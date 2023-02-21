@@ -8,7 +8,7 @@ const getFriendByID = async (req, res) => {
         res.send(data);
 
     } catch (err) {
-        console.log("err")
+        console.log(err)
         res.send({ friends: false });
     }
 }
