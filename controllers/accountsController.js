@@ -2,11 +2,16 @@ const accountMode = require("../models/accountMode.js")
 const bcrypt = require("bcrypt");
 
 const createAcount = async (req, res) => {
-    let { user_name, useremail, password } = req.body
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(password, salt);
-    const register = await accountMode.createAcountDB(user_name, useremail, hashedPassword)
-    res.send(register);
+    try {
+        let { user_name, useremail, password } = req.body
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(password, salt);
+        const register = await accountMode.createAcountDB(user_name, useremail, hashedPassword)
+        register[0].acount_created = true
+        res.send(register[0]);
+    } catch (err) {
+        res.send({ acount_created : false});
+    }
 }
 
 const login = async (req, res) => {
