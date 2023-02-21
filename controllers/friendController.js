@@ -4,11 +4,12 @@ const getFriendByID = async (req, res) => {
     try {
         console.log(req.params.id)
         let data = await friendModel.getFriendsByID(parseInt(req.params.id))
-        console.log(data)
+        console.log("data")
         res.send(data);
 
     } catch (err) {
-        res.send({ acount_created: false });
+        console.log("err")
+        res.send({ friends: false });
     }
 }
 
