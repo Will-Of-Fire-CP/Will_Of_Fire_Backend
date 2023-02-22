@@ -5,6 +5,12 @@ const getFriendsByID = async (user_id) => {
     return data
 }
 
+const removeFriendDB = async (user_id, friend_id) => {
+    let data = await pool.query("DELETE FROM friends WHERE user_id = $1 AND friend_id = $2 RETURNING *", [user_id, friend_id]).then(result => { return result.rows });
+    pool.query("DELETE FROM friends WHERE user_id = $1 AND friend_id = $2 RETURNING *", [friend_id, user_id])
+    return data;
+}
 module.exports = {
     getFriendsByID,
+    removeFriendDB
 }

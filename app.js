@@ -7,6 +7,7 @@ const app = new express();
 const friendRequestsRouter = require("./routes/friendRequestsRouter.js")
 const accounts = require('./routes/accountsRouter')
 const friendRouter = require('./routes/friendRouter')
+const scoreRouter = require('./routes/scoreRouter')
 app.use(express.json());
 app.use(cors());
 
@@ -17,5 +18,5 @@ app.get('/', (req, res) => {
 app.use('/accounts', accounts)
 app.use('/friend_requests', friendRequestsRouter)
 app.use('/friend', friendRouter)
-
+app.use('/score', scoreRouter)
 app.listen(3000);

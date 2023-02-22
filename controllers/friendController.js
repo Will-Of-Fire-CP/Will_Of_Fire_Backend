@@ -2,17 +2,25 @@ const friendModel = require("../models/friendModel.js")
 
 const getFriendByID = async (req, res) => {
     try {
-        console.log(req.params.id)
         let data = await friendModel.getFriendsByID(parseInt(req.params.id))
-        console.log("data")
         res.send(data);
 
     } catch (err) {
-        console.log(err)
         res.send({ friends: false });
     }
 }
+const removeFriend = async (req, res) => { 
+    try {
+        let { user_id, friend_id } = req.body
+        let data = await friendModel.removeFriendDB(user_id, friend_id)
+        res.send(data);
+    } catch (err) { 
+        res.send({message:false})
+    }
+}
+
 
 module.exports = {
-    getFriendByID
+    getFriendByID,
+    removeFriend
 }

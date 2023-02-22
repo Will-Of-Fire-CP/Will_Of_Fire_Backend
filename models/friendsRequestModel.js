@@ -20,6 +20,7 @@ const sendFriendRequest = async (user_id, request_to) => {
 }
 
 const acceptFriendRequestDB = async (user_id, request_to_id) => {
+    pool.query("INSERT INTO friends(user_id, friend_id) VALUES($1,$2)", [request_to_id, user_id]);
     const data = await pool.query("INSERT INTO friends(user_id, friend_id) VALUES($1,$2) RETURNING *", [user_id, request_to_id]).then(result => { return result.rows });
     return data
 }

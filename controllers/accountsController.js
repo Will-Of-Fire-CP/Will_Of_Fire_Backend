@@ -1,4 +1,4 @@
-const accountMode = require("../models/accountMode.js")
+const accountModel = require("../models/accountModel.js")
 const bcrypt = require("bcrypt");
 
 const createAcount = async (req, res) => {
@@ -6,7 +6,7 @@ const createAcount = async (req, res) => {
         let { user_name, useremail, password } = req.body
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
-        const register = await accountMode.createAcountDB(user_name, useremail, hashedPassword)
+        const register = await accountModel.createAcountDB(user_name, useremail, hashedPassword)
         register[0].acount_created = true
         res.send(register[0]);
     } catch (err) {
@@ -16,14 +16,13 @@ const createAcount = async (req, res) => {
 
 const login = async (req, res) => {
     let { user_name, password } = req.body;
-    const nameExist = await accountMode.getUserDataDB(user_name)
+    const nameExist = await accountModel.getUserDataDB(user_name)
 
     if (nameExist.length < 1) {
         res.status(400).json({ message: "Cannot find User" });
     } else {
         const user = nameExist[0];
         const passCheck = await bcrypt.compare(password, user.user_password);
-        console.log(passCheck)
         if (!passCheck) {
             res.status(400).json({ message: "Password is incorrect" });
         } else {
@@ -33,7 +32,19 @@ const login = async (req, res) => {
     }
 }
 
+const getUser = async (req, res) => { 
+    try {
+        let { name } = req.params
+        const userdata = await accountMode.getUserDB(name);
+        userdata[0].message = true;
+        res.status(200).json(userdata[0])
+
+    } catch (err) {
+        res.status(401).json({ message: false })
+     }
+}
 module.exports = {
     createAcount,
-    login
+    login,
+    getUser
 }
