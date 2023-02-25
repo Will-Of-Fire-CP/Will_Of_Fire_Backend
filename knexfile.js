@@ -5,22 +5,41 @@
  */
 module.exports = {
 
-  development: {
-    client: 'pg',
-    connection: {
-      database: 'aldair',
-      user: "aldair",
-      password: "a",
-    }
-  },
+  // development: {
+  //   client: 'pg',
+  //   connection: {
+  //     database: 'aldair',
+  //     user: "aldair",
+  //     password: "a",
+  //   }
+  // },
 
-  production: {
-    client: 'pg',
-    connection: {
-      database: 'aldair',
-      user:     'aldair',
-      password: 'a'
+  // production: {
+  //   client: 'pg',
+  //   connection: {
+  //     database: 'aldair',
+  //     user:     'aldair',
+  //     password: 'a'
+  //   },
+
+    development: {
+      client: 'pg',
+      connection: {
+        database: 'PostgreSQL',
+        user: "",
+        password: "",
+      }
     },
+
+    production: {
+      client: 'pg',
+      connection: {
+        database: 'PostgreSQL',
+        user: '',
+        password: ''
+      },
+    
+      
     pool: {
       min: 2,
       max: 10
