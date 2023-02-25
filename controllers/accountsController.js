@@ -35,7 +35,7 @@ const login = async (req, res) => {
 const getUser = async (req, res) => { 
     try {
         let { name } = req.params
-        const userdata = await accountMode.getUserDB(name);
+        const userdata = await accountModel.getUserDB(name);
         userdata[0].message = true;
         res.status(200).json(userdata[0])
 
