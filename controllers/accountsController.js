@@ -34,13 +34,21 @@ const login = async (req, res) => {
 
 const getUser = async (req, res) => { 
     try {
-        let { name } = req.params
-        const userdata = await accountModel.getUserDB(name);
-        userdata[0].message = true;
-        res.status(200).json(userdata[0])
+        let { user_id, search_friend_name } = req.body;
+        const userdata = await accountModel.getUserDB(search_friend_name);
+        const checkFriendStatus = await accountModel.checkFriendListDB(user_id, userdata[0].user_id)
+        console.log(user_id,  checkFriendStatus)
+        if (checkFriendStatus) {
+            userdata[0].message = "is friend";
+            res.status(200).json(userdata[0])
+        } else {
+            userdata[0].message = "not friend";
+            res.status(200).json(userdata[0])
+        }
+        
 
     } catch (err) {
-        res.status(401).json({ message: false })
+        res.status(404).json({ message: "not found" })
      }
 }
 module.exports = {
