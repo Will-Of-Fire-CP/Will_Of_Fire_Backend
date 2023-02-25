@@ -29,11 +29,16 @@ const removeFruendRequestDB = async (friend_request_id) => {
     const data = await pool.query("DELETE FROM friend_request WHERE friend_request_id = $1 RETURNING *", [friend_request_id]).then(result => { return result.rows });
     return data
 }
+const checkForFriendRequest = async (user_id, friend_id) => {
+    let data = await pool.query("SELECT * FROM friend_request WHERE user_id = $1 AND request_to_id = $2", [user_id, friend_id]).then(result => { return result.rows });
+    return data
+}
 
 module.exports = {
     friendRequestDB,
     getFriendRequestsByIDDB,
     sendFriendRequest,
     acceptFriendRequestDB,
-    removeFruendRequestDB
+    removeFruendRequestDB,
+    checkForFriendRequest
 }
