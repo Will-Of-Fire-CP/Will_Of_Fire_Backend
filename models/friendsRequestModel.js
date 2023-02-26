@@ -10,8 +10,9 @@ const friendRequestDB = async () => {
     return data
 }
 
-const getFriendRequestsByIDDB  = async (user_id) =>{
-    const data = await pool.query("SELECT * FROM friend_request WHERE request_to_id = $1", [user_id]).then(result => { return result.rows });
+const getFriendRequestsByIDDB = async (user_id) => {
+    // SELECT friend_request_id,users_requests.user_id, user_name, user_score  FROM (SELECT * FROM friend_request WHERE request_to_id = 1) AS users_requests JOIN users ON users_requests.user_id = users.user_id
+    const data = await pool.query("SELECT friend_request_id,users_requests.user_id, user_name, user_score  FROM (SELECT * FROM friend_request WHERE request_to_id = $1) AS users_requests JOIN users ON users_requests.user_id = users.user_id", [user_id]).then(result => { return result.rows });
     return data
 }
 const sendFriendRequest = async (user_id, request_to) => {
